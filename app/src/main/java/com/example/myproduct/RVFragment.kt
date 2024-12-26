@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.myproduct.databinding.ActivityMainBinding
 import com.example.myproduct.databinding.FragmentRVBinding
 
@@ -32,11 +33,8 @@ class RVFragment : Fragment() {
 
     private fun initRV() {
         cakesAdapter = CakesAdapter(cakesList){
-            val bundle = Bundle()
-            bundle.putSerializable("cakes", cakesList[it])
-            val detailFragment = DetailFragment()
-            detailFragment.arguments = bundle
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container, detailFragment).addToBackStack(null).commit()
+            findNavController().navigate(RVFragmentDirections.actionRVFragmentToDetailFragment(name = cakesList[it].name, image = cakesList[it].image, desc = cakesList[it].desc, price = cakesList[it].price))
+            /*findNavController().navigate(R.id.action_RVFragment_to_detailFragment)*/
 
         }
         binding.rvCakes.adapter = cakesAdapter

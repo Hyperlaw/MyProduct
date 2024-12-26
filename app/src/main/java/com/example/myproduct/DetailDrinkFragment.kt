@@ -27,7 +27,7 @@ class DetailDrinkFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (arguments != null){
-            val args = requireArguments().getSerializable("drinks") as Drinks
+            val args = DetailDrinkFragmentArgs.fromBundle(requireArguments())
             binding.tvName.text = args.name
             binding.tvDescription.text = args.desc
             binding.tvPrice.text = args.price

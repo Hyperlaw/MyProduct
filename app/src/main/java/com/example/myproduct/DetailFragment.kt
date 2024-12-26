@@ -29,7 +29,7 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (arguments != null){
-            val args = requireArguments().getSerializable("cakes") as Cakes
+            val args = DetailFragmentArgs.fromBundle(requireArguments())
             binding.tvName.text = args.name
             binding.tvDescription.text = args.desc
             binding.tvPrice.text = args.price

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.myproduct.databinding.ActivityMainBinding
 import com.example.myproduct.databinding.FragmentMainBinding
 
@@ -25,11 +26,11 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.constantLayout.setOnClickListener{
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container, RVFragment()).addToBackStack(null).commit()
+            findNavController().navigate(R.id.action_mainFragment_to_RVFragment)
         }
 
         binding.constantLayout2.setOnClickListener{
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container, RVDrinksFragment()).addToBackStack(null).commit()
+            findNavController().navigate(R.id.action_mainFragment_to_RVDrinksFragment)
         }
     }
 

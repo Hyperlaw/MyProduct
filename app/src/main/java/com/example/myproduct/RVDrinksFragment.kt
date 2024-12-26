@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.myproduct.databinding.FragmentRVDrinksBinding
 
 
@@ -30,12 +31,7 @@ class RVDrinksFragment : Fragment() {
 
     private fun initRV() {
         drinksAdapter = DrinksAdapter(drinksList){
-            val bundle = Bundle()
-            bundle.putSerializable("drinks", drinksList[it])
-            val detailFragment = DetailDrinkFragment()
-            detailFragment.arguments = bundle
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.fragment_container, detailFragment).addToBackStack(null).commit()
-
+            findNavController().navigate(RVDrinksFragmentDirections.actionRVDrinksFragmentToDetailDrinkFragment(name = drinksList[it].name, image = drinksList[it].image, desc = drinksList[it].desc, price = drinksList[it].price))
         }
         binding.rvDrinks.adapter = drinksAdapter
 
